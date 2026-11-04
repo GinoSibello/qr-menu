@@ -133,7 +133,7 @@ function AdminDashboard() {
   return (
     <div>
       <header className="app-header">
-        <div className="app-header__inner">
+        <div className="app-header__inner app-header__inner--wide">
           <span className="app-title">Administración</span>
           <button className="btn btn-secondary btn-sm" onClick={clearAuth}>
             Salir
@@ -141,82 +141,88 @@ function AdminDashboard() {
         </div>
       </header>
 
-      <main className="container" style={{ paddingBottom: 40 }}>
+      <main className="container container--wide" style={{ paddingBottom: 40 }}>
         {error && <p style={{ color: "var(--danger)" }}>{error}</p>}
 
-        <h2 className="section-title">Categorías</h2>
-        <form className="card" onSubmit={handleCreateCategory}>
-          <div className="field">
-            <label className="label">Nueva categoría</label>
-            <input
-              className="input"
-              value={catName}
-              onChange={(e) => setCatName(e.target.value)}
-              placeholder="Ej. Entradas"
-            />
+        <div className="admin-forms">
+          <div>
+            <h2 className="section-title">Categorías</h2>
+            <form className="card" onSubmit={handleCreateCategory}>
+              <div className="field">
+                <label className="label">Nueva categoría</label>
+                <input
+                  className="input"
+                  value={catName}
+                  onChange={(e) => setCatName(e.target.value)}
+                  placeholder="Ej. Entradas"
+                />
+              </div>
+              <button className="btn btn-primary" type="submit">
+                Agregar
+              </button>
+            </form>
           </div>
-          <button className="btn btn-primary" type="submit">
-            Agregar
-          </button>
-        </form>
 
-        <h2 className="section-title">Platos</h2>
-        <form className="card" onSubmit={handleCreateDish}>
-          <div className="field">
-            <label className="label">Nombre</label>
-            <input
-              className="input"
-              value={dishForm.name}
-              onChange={(e) => setDishForm({ ...dishForm, name: e.target.value })}
-            />
+          <div>
+            <h2 className="section-title">Platos</h2>
+            <form className="card" onSubmit={handleCreateDish}>
+              <div className="field">
+                <label className="label">Nombre</label>
+                <input
+                  className="input"
+                  value={dishForm.name}
+                  onChange={(e) => setDishForm({ ...dishForm, name: e.target.value })}
+                />
+              </div>
+              <div className="field">
+                <label className="label">Descripción</label>
+                <input
+                  className="input"
+                  value={dishForm.description}
+                  onChange={(e) =>
+                    setDishForm({ ...dishForm, description: e.target.value })
+                  }
+                />
+              </div>
+              <div className="field">
+                <label className="label">Precio</label>
+                <input
+                  className="input"
+                  type="number"
+                  step="0.01"
+                  value={dishForm.price}
+                  onChange={(e) => setDishForm({ ...dishForm, price: e.target.value })}
+                />
+              </div>
+              <div className="field">
+                <label className="label">Categoría</label>
+                <select
+                  className="input"
+                  value={dishForm.categoryId}
+                  onChange={(e) =>
+                    setDishForm({ ...dishForm, categoryId: e.target.value })
+                  }
+                >
+                  <option value="">Seleccionar…</option>
+                  {categories.map((c) => (
+                    <option key={c.id} value={c.id}>
+                      {c.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <button className="btn btn-primary" type="submit">
+                Agregar plato
+              </button>
+            </form>
           </div>
-          <div className="field">
-            <label className="label">Descripción</label>
-            <input
-              className="input"
-              value={dishForm.description}
-              onChange={(e) =>
-                setDishForm({ ...dishForm, description: e.target.value })
-              }
-            />
-          </div>
-          <div className="field">
-            <label className="label">Precio</label>
-            <input
-              className="input"
-              type="number"
-              step="0.01"
-              value={dishForm.price}
-              onChange={(e) => setDishForm({ ...dishForm, price: e.target.value })}
-            />
-          </div>
-          <div className="field">
-            <label className="label">Categoría</label>
-            <select
-              className="input"
-              value={dishForm.categoryId}
-              onChange={(e) =>
-                setDishForm({ ...dishForm, categoryId: e.target.value })
-              }
-            >
-              <option value="">Seleccionar…</option>
-              {categories.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <button className="btn btn-primary" type="submit">
-            Agregar plato
-          </button>
-        </form>
+        </div>
 
-        <div style={{ marginTop: 16 }}>
+        <div className="admin-categories" style={{ marginTop: 24 }}>
           {categories.map((cat) => {
             const catDishes = dishes.filter((d) => d.categoryId === cat.id);
             return (
-              <div key={cat.id} style={{ marginBottom: 24 }}>
+              <div key={cat.id}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                   <h3 style={{ fontSize: 17 }}>{cat.name}</h3>
                   <button

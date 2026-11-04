@@ -61,6 +61,10 @@ a {
   padding: 0 16px;
 }
 
+.container--wide {
+  max-width: 1400px;
+}
+
 .app-header {
   position: sticky;
   top: 0;
@@ -76,6 +80,10 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.app-header__inner--wide {
+  max-width: 1400px;
 }
 
 .app-title {
@@ -195,7 +203,10 @@ a {
   .app-header__inner {
     max-width: 720px;
   }
-  .kitchen-grid {
+  .admin-forms {
+    grid-template-columns: 1fr 1fr;
+  }
+  .admin-categories {
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -376,8 +387,14 @@ a {
 /* --- Cocina --- */
 .kitchen-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+.kitchen-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .kitchen-card__head {
   display: flex;
@@ -388,6 +405,29 @@ a {
 .kitchen-card__title {
   font-weight: 700;
   font-size: 15px;
+}
+.kitchen-card__footer {
+  margin-top: auto;
+}
+.kitchen-items {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+  flex: 1 1 auto;
+}
+.kitchen-items__row {
+  display: flex;
+  gap: 8px;
+  font-size: 14px;
+  padding: 3px 0;
+}
+.kitchen-items__qty {
+  font-weight: 700;
+  color: var(--text-muted);
+  min-width: 24px;
+}
+.kitchen-items__name {
+  flex: 1;
 }
 
 /* --- Login --- */
@@ -402,6 +442,18 @@ a {
 }
 
 /* --- Admin --- */
+.admin-forms {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  align-items: start;
+}
+.admin-categories {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-items: start;
+}
 .admin-dish {
   margin-bottom: 10px;
 }
