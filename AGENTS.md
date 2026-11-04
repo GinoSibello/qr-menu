@@ -18,21 +18,25 @@ El desarrollo se divide en subagentes (`.opencode/agents/`). Despáchalos con la
 
 ## Estado del proyecto
 
-MVP funcional de punta a punta. Monorepo npm workspaces: `client/` (PWA React+Vite+TS) y `server/` (Express+Prisma+PostgreSQL). Sin tests automatizados aún.
+MVP funcional de punta a punta, dockerizado. Monorepo npm workspaces: `client/` (PWA React+Vite+TS) y `server/` (Express+Prisma+PostgreSQL). `docker-compose.yml` levanta db + server + client. Sin tests automatizados aún.
 
 ## Comandos de desarrollo
 
 ```bash
-docker compose up -d    # levanta PostgreSQL 16 (puerto 5432)
-npm install             # instala ambos workspaces
-npm run seed            # crea datos de ejemplo en PostgreSQL
-npm run dev             # levanta server (4000) y client (5173) en paralelo
-npm run typecheck       # typecheck de server y client
-npm run build           # build de producción
+docker compose up -d --build   # levanta TODO: db + server + client (recomendado)
+docker compose down            # frena los contenedores
 ```
 
-- Base de datos: **PostgreSQL 16** vía Docker (`docker-compose.yml`). Credenciales dev: `qrmenu/qrmenu` en `server/.env` (ver `.env.example`). Precios en `Decimal(10,2)`.
-- Credenciales seed: admin `admin/admin123`, cocina `cocina/cocina123`.
+- Con Docker: client en `http://localhost:5173` (nginx), server en `:4000`, db en `:5432`. El server ejecuta `prisma migrate deploy` + seed al arrancar.
+- Alternativa local sin Docker (requiere DB arriba):
+  ```bash
+  npm install             # instala ambos workspaces
+  npm run seed            # datos de ejemplo
+  npm run dev             # server (4000) + client (5173) en paralelo
+  npm run typecheck       # typecheck server + client
+  ```
+- Base de datos: **PostgreSQL 16** (credenciales dev `qrmenu/qrmenu`). Precios en `Decimal(10,2)`.
+- Credenciales seed: admin `admin/admin123`, cocina `cocina/cocina123`. Seed crea 22 platos y 20 pedidos.
 - Flujo cliente: `/mesa/:number` (QR) → carrito → checkout (pago demo) → `/mesa/:number/pedido/:id`.
 - Migraciones Prisma en `server/prisma/migrations/`; usar `npx prisma migrate dev` para cambios de schema.
 

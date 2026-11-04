@@ -17,5 +17,28 @@ services:
       timeout: 5s
       retries: 10
 
+  server:
+    build: ./server
+    container_name: qr-menu-server
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://qrmenu:qrmenu@db:5432/qrmenu?schema=public
+      JWT_SECRET: dev-secret-cambiar-en-produccion
+      PORT: 4000
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "4000:4000"
+
+  client:
+    build: ./client
+    container_name: qr-menu-client
+    restart: unless-stopped
+    depends_on:
+      - server
+    ports:
+      - "5173:80"
+
 volumes:
   pgdata:

@@ -55,7 +55,7 @@ function KitchenDashboard() {
   return (
     <div>
       <header className="app-header">
-        <div className="app-header__inner app-header__inner--wide">
+        <div className="app-header__inner app-header__inner--full">
           <span className="app-title">Cocina</span>
           <button className="btn btn-secondary btn-sm" onClick={clearAuth}>
             Salir
@@ -63,7 +63,7 @@ function KitchenDashboard() {
         </div>
       </header>
 
-      <main className="container container--wide" style={{ paddingBottom: 40 }}>
+      <main className="container container--full" style={{ paddingBottom: 40 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <h2 className="section-title">Pedidos activos</h2>
           <span className="badge">{orders.length}</span>
@@ -108,10 +108,10 @@ function KitchenDashboard() {
                         onClick={() => changeStatus(order, next)}
                       >
                         {next === "preparing"
-                          ? "Marcar en preparación"
+                          ? "Preparar"
                           : next === "ready"
-                            ? "Marcar listo"
-                            : "Marcar entregado"}
+                            ? "Listo"
+                            : "Entregar"}
                       </button>
                     )}
                     {!next && (

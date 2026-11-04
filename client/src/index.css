@@ -65,6 +65,10 @@ a {
   max-width: 1400px;
 }
 
+.container--full {
+  max-width: none;
+}
+
 .app-header {
   position: sticky;
   top: 0;
@@ -84,6 +88,10 @@ a {
 
 .app-header__inner--wide {
   max-width: 1400px;
+}
+
+.app-header__inner--full {
+  max-width: none;
 }
 
 .app-title {
@@ -387,14 +395,15 @@ a {
 /* --- Cocina --- */
 .kitchen-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
   align-items: stretch;
 }
 .kitchen-card {
   display: flex;
   flex-direction: column;
   height: 100%;
+  padding: 12px;
 }
 .kitchen-card__head {
   display: flex;
