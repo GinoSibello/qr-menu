@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Table {
+  id     Int     @id @default(autoincrement())
+  number Int     @unique
+  qrCode String
+  orders Order[]
+}
+
+model Category {
+  id     Int    @id @default(autoincrement())
+  name   String
+  order  Int    @default(0)
+  dishes Dish[]
+}
+
+model Dish {
+  id          Int         @id @default(autoincrement())
+  name        String
+  description String
+  price       Float
+  imageUrl    String?
+  available   Boolean     @default(true)
+  categoryId  Int
+  category    Category    @relation(fields: [categoryId], references: [id])
+  pairings    Pairing[]
+  orderItems  OrderItem[]
+}
+
+model Pairing {
+  id            Int     @id @default(autoincrement())
+  dishId        Int
+  dish          Dish    @relation(fields: [dishId], references: [id])
+  title         String
+  description   String
+  suggestedItem String?
+}
+
+model Order {
+  id        Int         @id @default(autoincrement())
+  tableId   Int
+  table     Table       @relation(fields: [tableId], references: [id])
+  status    String      @default("received")
+  total     Float
+  createdAt DateTime    @default(now())
+  items     OrderItem[]
+}
+
+model OrderItem {
+  id        Int    @id @default(autoincrement())
+  orderId   Int
+  order     Order  @relation(fields: [orderId], references: [id])
+  dishId    Int
+  dish      Dish   @relation(fields: [dishId], references: [id])
+  quantity  Int
+  unitPrice Float
+}
+
+model User {
+  id           Int    @id @default(autoincrement())
+  username     String @unique
+  passwordHash String
+  role         String
+}
