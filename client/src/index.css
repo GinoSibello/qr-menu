@@ -61,11 +61,11 @@ a {
   padding: 0 16px;
 }
 
-.container--wide {
+.container.container--wide {
   max-width: 1400px;
 }
 
-.container--full {
+.container.container--full {
   max-width: none;
 }
 
@@ -86,11 +86,11 @@ a {
   justify-content: space-between;
 }
 
-.app-header__inner--wide {
+.app-header__inner.app-header__inner--wide {
   max-width: 1400px;
 }
 
-.app-header__inner--full {
+.app-header__inner.app-header__inner--full {
   max-width: none;
 }
 
