@@ -54,7 +54,8 @@ ordersRouter.post("/", async (req, res) => {
   }
 
   const total = items.reduce(
-    (sum, item) => sum + dishMap.get(item.dishId)!.price * item.quantity,
+    (sum, item) =>
+      sum + dishMap.get(item.dishId)!.price.toNumber() * item.quantity,
     0,
   );
 
@@ -67,7 +68,7 @@ ordersRouter.post("/", async (req, res) => {
         create: items.map((item) => ({
           dishId: item.dishId,
           quantity: item.quantity,
-          unitPrice: dishMap.get(item.dishId)!.price,
+          unitPrice: dishMap.get(item.dishId)!.price.toNumber(),
         })),
       },
     },

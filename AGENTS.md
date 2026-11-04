@@ -18,21 +18,23 @@ El desarrollo se divide en subagentes (`.opencode/agents/`). Despáchalos con la
 
 ## Estado del proyecto
 
-MVP funcional de punta a punta. Monorepo npm workspaces: `client/` (PWA React+Vite+TS) y `server/` (Express+Prisma+SQLite). Sin tests automatizados aún.
+MVP funcional de punta a punta. Monorepo npm workspaces: `client/` (PWA React+Vite+TS) y `server/` (Express+Prisma+PostgreSQL). Sin tests automatizados aún.
 
 ## Comandos de desarrollo
 
 ```bash
-npm install            # instala ambos workspaces
-npm run seed           # crea dev.db con datos de ejemplo
-npm run dev            # levanta server (4000) y client (5173) en paralelo
-npm run typecheck      # typecheck de server y client
-npm run build          # build de producción
+docker compose up -d    # levanta PostgreSQL 16 (puerto 5432)
+npm install             # instala ambos workspaces
+npm run seed            # crea datos de ejemplo en PostgreSQL
+npm run dev             # levanta server (4000) y client (5173) en paralelo
+npm run typecheck       # typecheck de server y client
+npm run build           # build de producción
 ```
 
-- Base de datos: **SQLite** (archivo `server/prisma/dev.db`) por no haber Docker; migrable a PostgreSQL según `03-SDD.md`.
+- Base de datos: **PostgreSQL 16** vía Docker (`docker-compose.yml`). Credenciales dev: `qrmenu/qrmenu` en `server/.env` (ver `.env.example`). Precios en `Decimal(10,2)`.
 - Credenciales seed: admin `admin/admin123`, cocina `cocina/cocina123`.
 - Flujo cliente: `/mesa/:number` (QR) → carrito → checkout (pago demo) → `/mesa/:number/pedido/:id`.
+- Migraciones Prisma en `server/prisma/migrations/`; usar `npx prisma migrate dev` para cambios de schema.
 
 ## Fuente de verdad: `docs/`
 
@@ -46,7 +48,7 @@ Leé estos archivos antes de escribir cualquier código:
 ## Decisiones ya tomadas (no reinventar)
 
 - Producto: menú digital por QR de mesa (monorestaurante), PWA, pago demo (sin pasarela real), cocina ve pedidos y cambia estado.
-- Stack definido en `03-SDD.md`: React + TypeScript + Vite (frontend PWA), Node + Express (backend), PostgreSQL + Prisma, JWT para admin/cocina. **Implementado con SQLite** (ver §Comandos).
+- Stack definido en `03-SDD.md`: React + TypeScript + Vite (frontend PWA), Node + Express (backend), PostgreSQL + Prisma, JWT para admin/cocina.
 - Estados del pedido (RN-04): `recibido → en preparación → listo → entregado`.
 - Opción visual elegida: **C (Minimal Tech)**. Todo el desarrollo se hace con ese estilo. Las opciones A y B se conservan en `04-UX-UI.md` y se exponen como páginas de muestra (no borrar).
 
