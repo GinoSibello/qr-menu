@@ -47,14 +47,15 @@ Leé estos archivos antes de escribir cualquier código:
 - `docs/01-PRD.md` — visión, personas, flujo QR→menú→pago→cocina, alcance MVP vs. backlog.
 - `docs/02-SRS.md` — requisitos funcionales (RF-xx) y no funcionales (RNF-xx), reglas de negocio (RN-xx), casos de uso.
 - `docs/03-SDD.md` — stack, arquitectura, modelo de datos, endpoints, estructura del proyecto.
-- `docs/04-UX-UI.md` — 3 propuestas visuales (A/B/C). **Elegida: C (Minimal Tech)**; A y B se conservan como referencia y se muestran en páginas de muestra.
+- `docs/04-UX-UI.md` — 4 propuestas visuales (A/B/C/D). **Elegida: D (Tucker-inspirada)**; A, B y C se conservan como referencia y se muestran en `/styles`.
 
 ## Decisiones ya tomadas (no reinventar)
 
 - Producto: menú digital por QR de mesa (monorestaurante), PWA, pago demo (sin pasarela real), cocina ve pedidos y cambia estado.
 - Stack definido en `03-SDD.md`: React + TypeScript + Vite (frontend PWA), Node + Express (backend), PostgreSQL + Prisma, JWT para admin/cocina.
 - Estados del pedido (RN-04): `recibido → en preparación → listo → entregado`.
-- Opción visual elegida: **C (Minimal Tech)**. Todo el desarrollo se hace con ese estilo. Las opciones A y B se conservan en `04-UX-UI.md` y se exponen como páginas de muestra (no borrar).
+- Opción visual elegida: **D (Tucker-inspirada)**. Tokens en `client/src/index.css` (`:root`). Todo el desarrollo se hace con ese estilo. Las opciones A, B y C se conservan en `04-UX-UI.md` y `/styles` como referencia (no borrar).
+- Navegación cliente: `SiteHeader` (drawer) y `BottomNav` (barra fija) en `client/src/components/`; usar esos componentes en pantallas de cliente, no headers propios.
 
 ## Convenciones
 

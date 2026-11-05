@@ -5,8 +5,9 @@
 **Estado:** Seleccionada
 **Fecha:** Noviembre 2026
 
-> **SELECCIONADA: Opción C (Minimal Tech).** Todo el MVP se construye con este estilo.
-> Las opciones A y B se conservan como referencia y se exponen como páginas de muestra (no borrar).
+> **SELECCIONADA: Opción D (Tucker-inspirada).** Todo el MVP se construye con este estilo.
+> Las opciones A, B y C se conservan como referencia y se exponen en `/styles` (no borrar).
+> C (Minimal Tech) fue la elección previa y queda como muestra.
 
 ## Propósito
 
@@ -77,6 +78,29 @@ Orientada a un enfoque digital limpio y eficiente. Mucho blanco, jerarquía clar
 - **Ideal para:** conceptos urbanos, food-hall, cafés de especialidad, marcas tech-forward.
 
 ---
+
+## Opción D — "Tucker-inspirada" (cálida, natural, moderna) — ELEGIDA
+
+Inspirada en la estética de la referencia (verdes naturales, naranja para acciones, tipografía de títulos condensada). Es una propuesta de implementación, **no una extracción exacta** de los estilos CSS de la marca de referencia.
+
+- **Paleta** (tokens en `client/src/index.css`):
+  - Verde principal (`--primary`): `#354C32`
+  - Verde salvia (`--secondary`): `#A5AD87`
+  - Naranja (`--accent`, acciones): `#E98235`
+  - Fondo crema (`--bg`): `#F5F2E9`
+  - Superficie / blanco cálido (`--surface`): `#FFFDF8`
+  - Texto (`--text`): `#252D24`
+- **Tipografía**:
+  - Títulos y subtítulos: **Oswald** 500–700, mayúsculas en categorías.
+  - Texto general: **DM Sans** 400–500.
+- **Componentes**:
+  - Encabezado con marca en texto (no el logo de la referencia) y botón hamburguesa naranja.
+  - Drawer de navegación a pantalla completa, fondo verde.
+  - Barra inferior fija en verde (Menú · Carrito · Inicio) en pantallas de cliente.
+  - Categorías como pastillas pequeñas, redondeadas, con borde verde.
+  - Jerarquía: categoría (Oswald mayúsculas) > nombre del plato (Oswald) > descripción (DM Sans, muted) > precio (Oswald, verde).
+- **Imágenes de platos**: se mantienen.
+- **Responsive**: prioridad a móvil; cocina y administración se adaptan a pantallas grandes.
 
 ## Comparativa rápida
 

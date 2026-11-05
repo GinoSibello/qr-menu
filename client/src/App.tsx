@@ -5,20 +5,19 @@ import { OrderStatusPage } from "./pages/OrderStatusPage";
 import { KitchenPage } from "./pages/KitchenPage";
 import { AdminPage } from "./pages/AdminPage";
 import { StyleSamplesPage } from "./pages/StyleSamplesPage";
+import { SiteHeader } from "./components/SiteHeader";
 
 function Home() {
   return (
     <div>
-      <header className="app-header">
-        <div className="app-header__inner">
-          <span className="app-title">Menú Digital</span>
-        </div>
-      </header>
+      <SiteHeader />
       <main className="container" style={{ paddingBottom: 40 }}>
-        <h1 style={{ marginTop: 24 }}>Menú digital por QR</h1>
+        <h1 className="page-title" style={{ marginTop: 24 }}>
+          Menú digital por QR
+        </h1>
         <p className="muted">
-          Escaneá el QR de tu mesa para ver el menú, pedir y pagar. Acá tenés los
-          accesos de demostración:
+          Escaneá el QR de tu mesa para ver la carta, pedir y pagar. Acá tenés
+          los accesos de demostración:
         </p>
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           <Link to="/mesa/5" className="btn btn-primary">

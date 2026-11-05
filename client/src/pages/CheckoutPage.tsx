@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { formatPrice } from "../types";
 import { useCart } from "../lib/cart";
 import { createOrder } from "../lib/api";
+import { SiteHeader } from "../components/SiteHeader";
+import { BottomNav } from "../components/BottomNav";
 
 export function CheckoutPage() {
   const { number } = useParams();
@@ -31,14 +33,11 @@ export function CheckoutPage() {
 
   return (
     <div>
-      <header className="app-header">
-        <div className="app-header__inner">
-          <span className="app-title">Tu pedido</span>
-          <span className="badge">Mesa {tableNumber}</span>
-        </div>
-      </header>
+      <SiteHeader tableNumber={tableNumber} />
 
-      <main className="container" style={{ paddingBottom: 40 }}>
+      <main className="container has-bottom-nav">
+        <h1 className="page-title">Tu pedido</h1>
+
         {items.length === 0 ? (
           <div className="empty">Tu carrito está vacío.</div>
         ) : (
@@ -111,6 +110,8 @@ export function CheckoutPage() {
           </button>
         </div>
       </main>
+
+      <BottomNav tableNumber={tableNumber} />
     </div>
   );
 }

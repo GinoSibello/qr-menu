@@ -18,18 +18,23 @@ const sampleDish: Dish = {
       title: "Sauvignon Blanc",
       description:
         "Su acidez cítrica resalta la frescura del pescado y limpia el paladar.",
-      suggestedItem: "Sauvignon Blanc, botella",
+      suggestedItem: "Sauvignon Blanc, copa",
     },
   ],
 };
 
-const themes: Record<string, { vars: CSSProperties; name: string; active?: boolean }> = {
+// Cada muestra define sus variables; D (vacía) hereda el tema activo de :root.
+const themes: Record<
+  string,
+  { vars: CSSProperties; name: string; active?: boolean }
+> = {
   A: {
     name: "A — Alta Cocina",
     vars: {
       "--bg": "#121212",
       "--surface": "#1e1e1e",
       "--surface-2": "#262626",
+      "--primary": "#c9a227",
       "--accent": "#c9a227",
       "--accent-2": "#c9a227",
       "--text": "#f5f5f0",
@@ -45,6 +50,7 @@ const themes: Record<string, { vars: CSSProperties; name: string; active?: boole
       "--bg": "#fff8f0",
       "--surface": "#ffffff",
       "--surface-2": "#fdeee0",
+      "--primary": "#e76f51",
       "--accent": "#e76f51",
       "--accent-2": "#f4a261",
       "--text": "#3d2c2e",
@@ -55,7 +61,23 @@ const themes: Record<string, { vars: CSSProperties; name: string; active?: boole
     } as CSSProperties,
   },
   C: {
-    name: "C — Minimal Tech (elegida)",
+    name: "C — Minimal Tech (anterior)",
+    vars: {
+      "--bg": "#ffffff",
+      "--surface": "#f7f7f7",
+      "--surface-2": "#eef0f2",
+      "--primary": "#0ea5e9",
+      "--accent": "#0ea5e9",
+      "--accent-2": "#10b981",
+      "--text": "#111827",
+      "--text-muted": "#6b7280",
+      "--border": "#e5e7eb",
+      "--font-heading": '"Space Grotesk", "Inter", system-ui, sans-serif',
+      "--font-body": '"Inter", system-ui, sans-serif',
+    } as CSSProperties,
+  },
+  D: {
+    name: "D — Tucker-inspirada (elegida)",
     active: true,
     vars: {},
   },
@@ -101,8 +123,9 @@ export function StyleSamplesPage() {
 
       <main className="container" style={{ paddingBottom: 40 }}>
         <p className="muted">
-          Vista previa de las tres propuestas de `docs/04-UX-UI.md`. La opción C es la
-          que se usa en el resto de la app.
+          Vista previa de las propuestas de <code>docs/04-UX-UI.md</code>. La
+          opción D es la que se usa en toda la app; A, B y C quedan como
+          referencia.
         </p>
 
         {Object.entries(themes).map(([key, theme]) => (
@@ -127,7 +150,7 @@ export function StyleSamplesPage() {
                 marginBottom: 8,
               }}
             >
-              <h3 style={{ fontFamily: "var(--font-heading)", fontSize: 17 }}>
+              <h3 style={{ fontFamily: "var(--font-heading)", fontSize: 19 }}>
                 {theme.name}
               </h3>
               {theme.active && <span className="badge">Elegida</span>}
@@ -139,14 +162,15 @@ export function StyleSamplesPage() {
               {[
                 { label: "bg", color: "var(--bg)" },
                 { label: "surface", color: "var(--surface)" },
+                { label: "primary", color: "var(--primary)" },
                 { label: "accent", color: "var(--accent)" },
                 { label: "text", color: "var(--text)" },
               ].map((swatch) => (
                 <div key={swatch.label} style={{ textAlign: "center" }}>
                   <div
                     style={{
-                      width: 48,
-                      height: 48,
+                      width: 44,
+                      height: 44,
                       borderRadius: 8,
                       border: "1px solid var(--border)",
                       background: swatch.color,

@@ -14,7 +14,7 @@
 - Alternativa local: `npm install` + `npm run seed` + `npm run dev` (requiere DB arriba).
 
 ## Decisiones tomadas
-- UX/UI: **C (Minimal Tech)** elegida. A/B conservadas en `/styles` como muestra.
+- UX/UI: **D (Tucker-inspirada)** elegida (verde oliva, naranja acciones, Oswald + DM Sans, drawer y barra inferior). A/B/C conservadas en `/styles`.
 - Stack: React+TS+Vite (PWA) · Node+Express · Prisma+PostgreSQL · JWT (bcryptjs) · Socket.IO (realtime).
 - Estados del pedido (RN-04): recibido → en preparación → listo → entregado. Pago 100% demo.
 - Cocina: grilla compacta de tarjetas (auto-fill), ordenadas por antigüedad, un botón para avanzar estado.

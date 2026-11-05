@@ -58,10 +58,10 @@ export interface AuthUser {
 }
 
 export const STATUS_META: Record<OrderStatus, { label: string; color: string }> = {
-  received: { label: "Recibido", color: "#0ea5e9" },
-  preparing: { label: "En preparación", color: "#f59e0b" },
-  ready: { label: "Listo", color: "#10b981" },
-  delivered: { label: "Entregado", color: "#6b7280" },
+  received: { label: "Recibido", color: "#354c32" },
+  preparing: { label: "En preparación", color: "#e98235" },
+  ready: { label: "Listo", color: "#5b7a3a" },
+  delivered: { label: "Entregado", color: "#7a7a70" },
 };
 
 export const STATUS_FLOW: OrderStatus[] = [

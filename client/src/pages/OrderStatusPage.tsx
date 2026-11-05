@@ -5,9 +5,12 @@ import { formatPrice } from "../types";
 import { getOrder } from "../lib/api";
 import { onOrderStatus } from "../lib/ws";
 import { OrderStatusBadge } from "../components/OrderStatusBadge";
+import { SiteHeader } from "../components/SiteHeader";
+import { BottomNav } from "../components/BottomNav";
 
 export function OrderStatusPage() {
   const { number, id } = useParams();
+  const tableNumber = Number(number);
   const [order, setOrder] = useState<Order | null>(null);
   const [error, setError] = useState("");
 
@@ -34,25 +37,34 @@ export function OrderStatusPage() {
   }, [id]);
 
   if (error) {
-    return <div className="empty">{error}</div>;
+    return (
+      <div>
+        <SiteHeader tableNumber={tableNumber} />
+        <div className="empty">{error}</div>
+      </div>
+    );
   }
 
   if (!order) {
-    return <div className="empty">Cargando tu pedido…</div>;
+    return (
+      <div>
+        <SiteHeader tableNumber={tableNumber} />
+        <div className="empty">Cargando tu pedido…</div>
+      </div>
+    );
   }
 
   return (
     <div>
-      <header className="app-header">
-        <div className="app-header__inner">
-          <span className="app-title">Pedido #{order.id}</span>
-          <span className="badge">Mesa {number}</span>
-        </div>
-      </header>
+      <SiteHeader tableNumber={tableNumber} />
 
-      <main className="container" style={{ paddingBottom: 40 }}>
+      <main className="container has-bottom-nav">
+        <h1 className="page-title">Pedido #{order.id}</h1>
+
         <div className="card" style={{ textAlign: "center", marginTop: 16 }}>
-          <h2 style={{ marginBottom: 12 }}>¡Pedido confirmado!</h2>
+          <h2 className="section-title" style={{ margin: "0 0 12px" }}>
+            ¡Pedido confirmado!
+          </h2>
           <OrderStatusBadge status={order.status} />
           <p className="muted" style={{ marginTop: 12 }}>
             Tu comida será llevada a la mesa. El estado se actualiza en vivo.
@@ -79,6 +91,8 @@ export function OrderStatusPage() {
           <strong>{formatPrice(order.total)}</strong>
         </div>
       </main>
+
+      <BottomNav tableNumber={tableNumber} />
     </div>
   );
 }

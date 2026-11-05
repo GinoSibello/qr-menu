@@ -18,6 +18,7 @@ You are the UX/UI implementer for the restaurant QR-menu project.
 - A — Alta Cocina: fondo #121212, acento dorado #C9A227, serif Playfair Display.
 - B — Cálido Familiar: fondo #FFF8F0, acento #E76F51, tipografía redondeada.
 - C — Minimal Tech: fondo #FFFFFF, acento #0EA5E9, sans geométrica.
+- D — Tucker-inspirada (ELEGIDA, activa en :root): primary #354C32, secondary #A5AD87, accent #E98235, bg #F5F2E9, surface #FFFDF8, text #252D24. Oswald (títulos) + DM Sans (texto).
 
 ## Verificación
 - Once client/ has package.json: run typecheck/build before finishing.
